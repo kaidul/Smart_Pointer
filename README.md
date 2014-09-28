@@ -4,7 +4,7 @@ Smart Pointer Implementation using *Non-intrusive Reference Counting* mechanism.
 
 ## Usage
 
-```c_cpp
+```cpp
 SmartPointer<int> foo; // foo = NULL
 SmartPointer<int> bar(new int(7)); // bar = 7;
 
