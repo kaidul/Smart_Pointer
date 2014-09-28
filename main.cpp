@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cassert>
 #include <vector>
+#include <unordered_set>
 #include "SmartPointer.hpp"
 
 /* Test Program */
@@ -36,6 +37,9 @@ int main(void) {
     assert(vectorPtr->at(0) == 1);
     assert(vectorPtr->at(1) == 2);
     assert(vectorPtr->at(2) == 3);
+    SmartPointer<std::unordered_set<int> > *setPtr = new SmartPointer<std::unordered_set<int> >(new std::unordered_set<int>());
+    (*setPtr)->insert(1);
+    assert( *((*setPtr)->begin()) == 1 );
 
     SmartPointer <int> ptrtoInt(new int(4));
     SmartPointer <int> ptrtoInt2 = ptrtoInt;
