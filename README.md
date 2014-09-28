@@ -7,6 +7,9 @@ Smart Pointer Implementation using *Non-intrusive Reference Counting* mechanism.
 ```cpp
 SmartPointer<int> foo; // foo = NULL
 SmartPointer<int> bar(new int(7)); // bar = 7;
+foo = bar;
+assert(foo == bar);
+assert(*foo == *bar);
 
 SmartPointer<int> var = new SmartPointer<int>(new int(4)); // int *var = new int(4);
 assert(*var == 4);
