@@ -43,16 +43,18 @@ const SmartPointer<T>& SmartPointer<T>::operator = (T *address) { // ptr1 = int(
 }
 
 template <typename T>
-const SmartPointer<T>& SmartPointer<T>::operator = (SmartPointer<T> &other) { // ptr1 = ptr2
-    decreaseRefCount();
-    this->address = other.address;
-    this->refCount = other.refCount;
-    increaseRefCount();
+const SmartPointer<T>& SmartPointer<T>::operator = (SmartPointer<T> &other) {
+    if(this != &other) {
+        decreaseRefCount();
+        this->address = other.address;
+        this->refCount = other.refCount;
+        increaseRefCount();
+    }
     return *this;
 }
 
 template <typename T>
-const SmartPointer<T>& SmartPointer<T>::operator = (const SmartPointer<T> &other) { // ptr1 = new int(new int(2))
+const SmartPointer<T>& SmartPointer<T>::operator = (const SmartPointer<T> &other) {
     decreaseRefCount();
     this->address = other.address;
     this->refCount = other.refCount;

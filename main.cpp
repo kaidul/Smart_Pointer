@@ -11,13 +11,14 @@ int main(void) {
     SmartPointer<int> *sp2 = new SmartPointer<int>(new int(2));
     SmartPointer<int> *sp3 = new SmartPointer<int>(new int());
     assert(**sp1 != **sp2);
-    sp3 = sp1; // like shallow copy
-    assert(sp1 == sp3);
+    *sp1 = *sp1; // no reference count will occur
+
+    *sp3 = *sp1; // like shallow copy
     assert(*sp1 == *sp3);
     assert(**sp1 == **sp3);
-    sp3 = sp2;
-    sp2 = sp1;
-    sp3 = sp1;
+    *sp3 = *sp2;
+    *sp2 = *sp1;
+    *sp3 = *sp1;
     // now sp2 and sp3 become dangling pointers
 
     delete sp1;
@@ -27,6 +28,12 @@ int main(void) {
     /*-------------stack allocation------------- */
     SmartPointer<int> var(new int(7));
     assert(*var == 7);
+
+    SmartPointer<int> foo; // foo = NULL
+    SmartPointer<int> bar(new int(7)); // bar = 7;
+    foo = bar;
+    assert(foo == bar);
+    assert(*foo == *bar);
 
     /* pointer to complex data types */
     SmartPointer<std::vector<int> > vectorPtr(new std::vector<int>());

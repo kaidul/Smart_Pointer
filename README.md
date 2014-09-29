@@ -13,6 +13,9 @@ assert(*foo == *bar);
 
 SmartPointer<int> *var = new SmartPointer<int>(new int(4)); // int *var = new int(4);
 assert(**var == 4);
+SmartPointer<int> *var2 = new SmartPointer<int>(new int(7));
+assert(*var != *var2);
+assert(**var != **var2);
 
 /* pointer to complex data types */
 SmartPointer<std::vector<int> > vectorPtr(new std::vector<int>());
